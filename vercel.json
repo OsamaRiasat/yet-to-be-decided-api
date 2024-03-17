@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "yet_to_be_decided_api/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.8" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "yet_to_be_decided_api/wsgi.py"
+    }
+  ]
+}
