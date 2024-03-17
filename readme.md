@@ -32,6 +32,11 @@ pip install -r requirements.txt
 
 # Run database migrations
 python manage.py migrate
+
+# API documentation
+
+# Swagger
+http://127.0.0.1:8000/api/schema/swagger-ui/
 ```
 
 ## Usage
