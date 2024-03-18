@@ -53,3 +53,40 @@ class ContactSubmission(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MeetingRequest(models.Model):
+    REGION_CHOICES = (
+        ('Middle East and North Africa', 'Middle East and North Africa'),
+        ('USA', 'USA'),
+        ('Europe', 'Europe'),
+        ('Asia', 'Asia'),
+        ('Australia', 'Australia'),
+        ('Africa', 'Africa'),
+        ('South America', 'South America'),
+        ('Central America', 'Central America'),
+        ('Caribbean', 'Caribbean'),
+        ('Other', 'Other'),
+    )
+
+    created_on = models.DateTimeField(auto_now_add=True, editable=False, verbose_name=_('created on'))
+
+    name = models.CharField(verbose_name=_('name'), max_length=100, blank=False)
+    email = models.EmailField(verbose_name=_('email'), max_length=100, blank=False)
+    message = models.TextField(verbose_name=_('message'), blank=True)
+    region = models.CharField(max_length=100, choices=REGION_CHOICES, default='Middle East and North Africa', verbose_name=_('region'), blank=True)
+    date = models.DateField(verbose_name=_('date'), blank=False)
+    time = models.TimeField(verbose_name=_('time'), blank=False)
+
+    def __str__(self):
+        return self.name
+
+
+class NewsletterSubscription(models.Model):
+    created_on = models.DateTimeField(auto_now_add=True, editable=False, verbose_name=_('created on'))
+
+    email = models.EmailField(verbose_name=_('email'), max_length=100, blank=False)
+
+    def __str__(self):
+        return self.email
+

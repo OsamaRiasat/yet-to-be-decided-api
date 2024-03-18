@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-rku#(m36r2ryc_6ue4tdn78tz+ucdp=0x+8qod-h!7xr6u=iu3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['devusama.pythonanywhere.com', 'yet-to-be-decided-api.vercel.app']
+ALLOWED_HOSTS = ['devusama.pythonanywhere.com', 'yet-to-be-decided-api.vercel.app', '127.0.0.1', 'localhost']
 
 
 # Application definition
