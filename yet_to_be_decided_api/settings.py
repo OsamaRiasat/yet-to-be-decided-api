@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-rku#(m36r2ryc_6ue4tdn78tz+ucdp=0x+8qod-h!7xr6u=iu3
 DEBUG = True
 
 ALLOWED_HOSTS = ['devusama.pythonanywhere.com', 'yet-to-be-decided-api.vercel.app', '127.0.0.1', 'localhost']
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'company',
     'rest_framework',
     'drf_spectacular',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -55,6 +57,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # CORS
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'yet_to_be_decided_api.urls'
