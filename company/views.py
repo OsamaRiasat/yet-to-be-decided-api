@@ -18,8 +18,16 @@ class ContactSubmissionView(generics.ListCreateAPIView):
         serializer = ContactSubmissionSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            response = {
+                'data': serializer.data,
+                'message': 'Your message has been sent. We will get back to you soon.'
+            }
+            return Response(response, status=status.HTTP_201_CREATED)
+        response = {
+            'data': serializer.errors,
+            'message': 'Could not send your message. Please try again.'
+        }
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -31,13 +39,20 @@ class MeetingRequestView(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         """
-        - Date format: YYYY-MM-DD
-        - Time format: HH:MM:SS
+        - Datetime format: YYYY-MM-DDTHH:MM:SS.sssZ
         """
         serializer = MeetingRequestSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            response = {
+                'data': serializer.data,
+                'message': 'Your meeting request has been sent. We will get back to you soon.'
+            }
+            return Response(response, status=status.HTTP_201_CREATED)
+        response = {
+            'data': serializer.errors,
+            'message': 'Could not send your meeting request. Please try again.'
+        }
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
@@ -51,9 +66,16 @@ class NewsletterSubscriptionView(generics.ListCreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = NewsletterSubscriptionSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            response = {
+                'data': serializer.data,
+                'message': 'You have been successfully subscribed to our newsletter.'
+            }
+            return Response(response, status=status.HTTP_201_CREATED)
+        response = {
+            'data': serializer.errors,
+            'message': 'Could not subscribe you to our newsletter. Please try again.'
+        }
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

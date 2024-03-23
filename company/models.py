@@ -35,7 +35,6 @@ class ContactSubmission(models.Model):
     name = models.CharField(verbose_name=_('name'), max_length=100, blank=False)
     email = models.EmailField(verbose_name=_('email'), max_length=100, blank=False)
     message = models.TextField(verbose_name=_('message'), blank=False)
-    region = models.CharField(max_length=100)
     industry = models.CharField(max_length=100, choices=INDUSTRY_CHOICES, default='Agriculture', verbose_name=_('industry'), blank=False)
 
     def __str__(self):
@@ -48,9 +47,7 @@ class MeetingRequest(models.Model):
     name = models.CharField(verbose_name=_('name'), max_length=100, blank=False)
     email = models.EmailField(verbose_name=_('email'), max_length=100, blank=False)
     message = models.TextField(verbose_name=_('message'), blank=True)
-    region = models.CharField(max_length=100, verbose_name=_('region'), blank=True)
-    date = models.DateField(verbose_name=_('date'), blank=False)
-    time = models.TimeField(verbose_name=_('time'), blank=False)
+    datetime = models.DateTimeField(verbose_name=_('datetime'), blank=False)
 
     def __str__(self):
         return self.name
