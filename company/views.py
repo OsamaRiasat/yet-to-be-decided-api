@@ -24,23 +24,6 @@ class ContactSubmissionView(generics.ListCreateAPIView):
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
-    def get_region_choices(self):
-        return ContactSubmission.REGION_CHOICES
-
-class ChoicesAPIView(APIView):
-    def get(self, request, field_name):
-        """
-        Get choices for a field.
-        Parameters:
-        - REGION
-        - INDUSTRY
-        """
-        try:
-            choices = dict(getattr(ContactSubmission, f'{field_name.upper()}_CHOICES'))
-            return Response(choices)
-        except AttributeError:
-            return Response({'error': f'Field "{field_name}" does not exist or does not have choices.'}, status=400)
-
 
 class MeetingRequestView(generics.ListCreateAPIView):
     queryset = MeetingRequest.objects.all()
@@ -59,9 +42,6 @@ class MeetingRequestView(generics.ListCreateAPIView):
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-
-    def get_region_choices(self):
-        return MeetingRequest.REGION_CHOICES
 
 
 class NewsletterSubscriptionView(generics.ListCreateAPIView):

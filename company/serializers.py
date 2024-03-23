@@ -19,9 +19,6 @@ class ContactSubmissionSerializer(serializers.ModelSerializer):
         validated_data.pop('opt_in', None)
         return ContactSubmission.objects.create(**validated_data)
 
-    def get_region_choices(self):
-        return dict(ContactSubmission.REGION_CHOICES)
-
 
 class MeetingRequestSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,8 +28,6 @@ class MeetingRequestSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return MeetingRequest.objects.create(**validated_data)
 
-    def get_region_choices(self):
-        return dict(MeetingRequest.REGION_CHOICES)
 
 
 class NewsletterSubscriptionSerializer(serializers.ModelSerializer):
